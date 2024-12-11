@@ -15,7 +15,7 @@ const HomePage = () => {
       </header>
 
       {/* Main Content */}
-      <main className="flex-grow pt-16"> {/* Add padding to account for the fixed header */}
+      <main className="flex-grow pt-24"> {/* Add padding to account for the fixed header */}
         <SpecialOffer />
         <Categories />
         <TopStreetShops />

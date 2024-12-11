@@ -3,13 +3,16 @@ import Searchicon from "./images/Searchicon.png";
 import usericon from "./images/usericon.png";
 import Homeicon from "./images/homeicon.png";
 import carticon from "./images/carticon.png";
+import { Link } from "react-router-dom";
 
 const FooterNavigation = () => {
   const navItems = [
     { icon: <img src={Searchicon} alt="Search" className="w-6 h-6" />, label: "Search" },
     { icon: <img src={Homeicon} alt="Home" className="w-6 h-6" />, label: "Home" },
-    { icon: <img src={carticon} alt="Cart" className="w-6 h-6" />, label: "Cart" },
-    { icon: <img src={usericon} alt="User" className="w-6 h-6" />, label: "User" },
+   { icon: <Link to="/cart">
+    <img src={carticon} alt="Cart Icon" className="h-6 w-6" />
+  </Link>, label: "Cart" },
+    { icon:  <img src={usericon} alt="User" className="w-6 h-6" />, label: "User" },
   ];
 
   return (
