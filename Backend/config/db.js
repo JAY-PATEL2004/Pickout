@@ -8,7 +8,7 @@ const client = new Client({
 
 client.connect()
   .then(() => console.log('Connected successfully'))
-  .then(() => client.query('SELECT version();'))
-  .then(res => console.log(res.rows[0]))
-  .catch(e => console.error(e))
-  .finally(() => client.end());
+  .catch((e) => console.error('Connection error', e));
+
+// Do NOT call client.end() here, to keep the connection open for reuse.
+module.exports = client;
