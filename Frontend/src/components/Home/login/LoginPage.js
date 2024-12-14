@@ -1,11 +1,59 @@
-import React from "react";
-import logoimage from "../images/orders.png";
+import React, { useState } from "react";
+import {jwtDecode} from 'jwt-decode'; // Ensure proper import
+import axios from 'axios'; // Ensure axios is imported correctly
+import { useNavigate } from "react-router-dom";
+import logoimage from "../images/orders.png"; // Adjust the path if required
 
 const LoginPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:5000/auth/login", {
+        email,
+        password,
+      });
+      
+      if (response.status === 200) {
+        const userData = jwtDecode(response.data.accessToken);
+        localStorage.setItem("name", userData.name);
+        localStorage.setItem("email", userData.email);
+        localStorage.setItem("customer_id", userData.customer_id);
+        localStorage.setItem("phone_on", userData.phone_no);
+        localStorage.setItem("imageurl", userData.imageurl);
+        localStorage.setItem("address", userData.address);
+
+        // Navigate to home page after successful login
+        navigate("/");
+      }
+    } catch (error) {
+      if (error.response) {
+        switch (error.response.status) {
+          case 400:
+            setErrorMessage("Email not found. Redirecting to signup...");
+            setTimeout(() => navigate("/SignupPage"), 2000); // Corrected navigation route
+            break;
+          case 401:
+            setErrorMessage("Incorrect password. Please try again.");
+            break;
+          default:
+            setErrorMessage("An error occurred while logging in. Please try again later.");
+        }
+      } else if (error.request) {
+        setErrorMessage("Network error. Please check your connection.");
+      } else {
+        setErrorMessage("Unexpected error occurred.");
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-4xl bg-white/80 backdrop-blur-md rounded-lg shadow-lg">
-        {/* Left Side: Image */}
         <div className="hidden md:flex md:w-1/2 h-full items-center justify-center bg-gray-200">
           <img
             src={logoimage}
@@ -13,25 +61,29 @@ const LoginPage = () => {
             className="w-3/4 h-auto object-contain"
           />
         </div>
-
-        {/* Right Side: Login Form */}
         <div className="w-full md:w-1/2 p-8">
           <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">
-            Welcome Back!
+            Welcome Back to Pickout!
           </h1>
           <p className="text-gray-600 text-center mb-6">
             Sign in to continue exploring amazing opportunities.
           </p>
-          <form>
+          <form onSubmit={handleSubmit}>
             <input
               type="email"
-              placeholder="Email"
+              placeholder="Enter email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="block p-3 mb-3 w-full border border-gray-300 rounded bg-gray-50"
+              required
             />
             <input
               type="password"
               placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="block p-3 mb-3 w-full border border-gray-300 rounded bg-gray-50"
+              required
             />
             <div className="flex items-center justify-between mb-3">
               <label className="flex items-center text-gray-600">
@@ -40,10 +92,7 @@ const LoginPage = () => {
               </label>
               <button
                 type="button"
-                onClick={() => {
-                  // Add your "forgot password" functionality here
-                  console.log("Forgot password clicked");
-                }}
+                onClick={() => alert("Forgot password functionality coming soon!")}
                 className="text-green-500 text-sm underline"
               >
                 Forgot your password?
@@ -53,6 +102,7 @@ const LoginPage = () => {
               LOGIN
             </button>
           </form>
+          {errorMessage && <p className="text-red-500 mt-3">{errorMessage}</p>}
         </div>
       </div>
     </div>

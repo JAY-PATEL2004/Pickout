@@ -2,9 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Sidebar = ({ closeSidebar }) => {
-  // Placeholder image URL - replace this with dynamic data when integrating backend
-  const profilePhotoUrl = "https://via.placeholder.com/100"; // Replace with actual profile image URL
-  const customerName = "John Doe"; // Replace with actual customer name dynamically
+  console.log(localStorage.getItem("name"));
+  console.log(localStorage.getItem("phone_no"));
+  console.log(localStorage.getItem("imageurl"));
+  console.log(localStorage.getItem("address"));
+
+  // Fetching data from localStorage
+  const profilePhotoUrl = localStorage.getItem("imageurl"); // Replace with actual key for profile image URL
+  const customerName = localStorage.getItem("name") || "John Doe"; // Default to "John Doe" if not found
 
   return (
     <div className="fixed top-0 left-0 h-full bg-white shadow-md w-72 z-50">
@@ -19,7 +24,7 @@ const Sidebar = ({ closeSidebar }) => {
       {/* Profile Section */}
       <div className="p-6 mt-12 flex flex-col items-center">
         <img
-          src={profilePhotoUrl}
+          src={profilePhotoUrl || "https://via.placeholder.com/150"} // Fallback if no image URL is found
           alt="Customer Profile"
           className="w-20 h-20 rounded-full border-2 border-green-600"
         />
@@ -45,7 +50,7 @@ const Sidebar = ({ closeSidebar }) => {
               className="text-green-600 hover:text-green-800"
               onClick={closeSidebar}
             >
-              My Wallet
+              {customerName} Address
             </Link>
           </li>
           <li>
