@@ -1,22 +1,22 @@
 import React from "react";
-
+import demoimage from "../Home/images/Burger.png"
 const MostSoldProducts = () => {
   const products = [
     {
       name: "Classic Burger",
-      image: "/images/classic-burger.jpg", // Ensure paths are correct
+      image: demoimage, // Ensure paths are correct
     },
     {
       name: "Beef Cheese Burger",
-      image: "/images/beef-cheese-burger.jpg",
+      image: demoimage,
     },
     {
       name: "Bacon BBQ Burger",
-      image: "/images/bacon-burger.jpg",
+      image: demoimage,
     },
     {
       name: "Double Stack Burger",
-      image: "/images/double-stack.jpg",
+      image: demoimage,
     },
   ];
 

@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.App {
+  text-align: center;
+  padding: 10px; /* Add padding for better spacing on smaller screens */
+}
+
+.App-logo {
+  height: 20vmin; /* Reduce logo size for mobile screens */
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 15s linear; /* Reduce animation duration for a smoother feel */
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(12px + 2vmin); /* Adjust font size slightly for readability */
+  color: white;
+  padding: 10px; /* Add padding to avoid content touching screen edges */
+  box-sizing: border-box;
+}
+
+.App-link {
+  color: #61dafb;
+  font-size: 16px; /* Ensure links are easily tappable */
+  margin-top: 10px; /* Add space around links */
+  text-decoration: none;
+}
+
+.App-link:hover {
+  color: #21a1f1; /* Add hover effect for better visual feedback */
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Additional styles for smaller screens */
+@media screen and (max-width: 768px) {
+  .App-header {
+    font-size: calc(10px + 1.5vmin); /* Reduce font size for smaller screens */
+    padding: 20px; /* Increase padding for comfortable spacing */
+  }
+
+  .App-logo {
+    height: 30vmin; /* Slightly increase logo size for mid-sized devices */
+  }
+
+  .App-link {
+    font-size: 14px; /* Reduce font size for better scaling */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .App-header {
+    font-size: calc(8px + 1.2vmin); /* Adjust font size for very small screens */
+  }
+
+  .App-logo {
+    height: 25vmin; /* Further reduce logo size */
+  }
+
+  .App-link {
+    font-size: 12px; /* Ensure links are still readable on small screens */
+  }
+}

@@ -1,37 +1,33 @@
 const client = require('../config/db');
 
-// Select all users (customers and vendors)
-const selectAll = async () => {
+// Select all customers
+const selectAllCustomers = async () => {
     const result = await client.query(`
-        SELECT * FROM users;
+        SELECT * FROM Customer;
     `);
     return result.rows;
-}
+};
 
-// Select user by a specific field (e.g., email or phone)
-const selectWhere = async (field, value) => {
+// Select customer by a specific field (e.g., email or phone_no)
+const selectCustomerWhere = async (field, value) => {
     const result = await client.query(`
         SELECT * FROM Customer
         WHERE ${field} = $1;
     `, [value]);
     return result.rows;
-}
+};
 
-// Insert a new user (customer or vendor)
-const insert = async (name, email, phone_no, password, address, image_url) => {
+// Insert a new customer
+const insertCustomer = async (name, email, phone_no, password, address, image_url) => {
     try {
-        console.log(name);
-        const reg = await client.query(`
+        await client.query(`
             INSERT INTO Customer (name, email, phone_no, password, address, image_url)
-            VALUES ($1, $2, $3, $4, $5, $6) returning id;
+            VALUES ($1, $2, $3, $4, $5, $6);
         `, [name, email, phone_no, password, address, image_url]);
-        console.log(reg);
-        return reg.rows[0].id;
     } catch (err) {
         console.log(err.message);
     }
 };
-
 // Insert a new vendor
 const insertVendor = async (userId, locationId, foodCategory) => {
     try {
@@ -44,4 +40,4 @@ const insertVendor = async (userId, locationId, foodCategory) => {
     }
 };
 
-module.exports = { selectAll, selectWhere, insert, insertVendor };
+module.exports = { selectCustomerWhere, selectAllCustomers, insertCustomer, insertVendor };
