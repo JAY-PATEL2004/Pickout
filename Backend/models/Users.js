@@ -11,19 +11,22 @@ const selectAll = async () => {
 // Select user by a specific field (e.g., email or phone)
 const selectWhere = async (field, value) => {
     const result = await client.query(`
-        SELECT * FROM users
+        SELECT * FROM Customer
         WHERE ${field} = $1;
     `, [value]);
     return result.rows;
 }
 
 // Insert a new user (customer or vendor)
-const insert = async (name, email, mobile, password, role) => {
+const insert = async (name, email, phone_no, password, address, image_url) => {
     try {
-        await client.query(`
-            INSERT INTO users (name, email, phone, password, role)
-            VALUES ($1, $2, $3, $4, $5);
-        `, [name, email, mobile, password, role]);
+        console.log(name);
+        const reg = await client.query(`
+            INSERT INTO Customer (name, email, phone_no, password, address, image_url)
+            VALUES ($1, $2, $3, $4, $5, $6) returning id;
+        `, [name, email, phone_no, password, address, image_url]);
+        console.log(reg);
+        return reg.rows[0].id;
     } catch (err) {
         console.log(err.message);
     }

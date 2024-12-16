@@ -25,4 +25,11 @@ const login = async (req, res) => {
   res.status(200).json({ accessToken });
 };
 
-module.exports = { login };
+const register = async (req, res) => {
+  const {name, email, phone_no, password, address, image_url} = req.query;
+  console.log(req.query);
+  const id = await User.insert(name, email, phone_no, password, address, image_url);
+  res.status(200).json({ id });
+};
+
+module.exports = { login, register };
