@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CartItem from "./Cartiteam";
+import CartItem from "./Cartitem";
 import Summary from "./Cartsummary";
 import burger from "../Home/images/Burger.png"
 
