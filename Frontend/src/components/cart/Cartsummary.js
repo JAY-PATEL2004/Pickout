@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
 const Summary = ({ items }) => {
   const [delivery, setDelivery] = useState(false);
 
@@ -42,9 +42,9 @@ const Summary = ({ items }) => {
         <span>₹{finalPrice}</span>
       </div>
       <div className="flex justify-between items-center">
-        <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
+       <Link to ="/Ordertaracking"> <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
           Pay
-        </button>
+        </button></Link>
         <button className="bg-gray-500 text-white px-4 py-2 rounded-md">
           Add Address
         </button>

@@ -9,7 +9,7 @@ import ShopPage from "./components/shop/ShopPage";
 import TopStreetShops from "./components/Home/TopStreetfood";
 import CartPage from "./components/cart/cartpage"; // Corrected import for CartPage
 import Sidebar from "./components/Home/Slidebar/Sidebar";
-
+import  Ordertraking from "./components/OrderTracking/OrderTracking"
 const App = () => {
   return (
     <Router>
@@ -26,6 +26,7 @@ const App = () => {
           <Route path="/cart" element={<CartPage />} /> {/* Corrected route */}
           <Route path ="/sidebar" element={<Sidebar/>}/>
           <Route path ="/SignupPage" element={<SignupPage/>}/>
+          <Route path="/Ordertaracking" element={<Ordertraking/>}/>
         </Routes>
       </Layout>
     </Router>

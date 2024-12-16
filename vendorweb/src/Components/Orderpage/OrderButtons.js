@@ -23,14 +23,14 @@ const OrderButtons = () => {
       >
         Accept
       </button>
-      <button className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition">
+      <button className="bg-gray-500 text-black py-2 px-4 rounded-lg hover:bg-red-700 transition">
         Reject
       </button>
 
       {showPopup && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded-lg">
-            <h2 className="text-lg font-bold mb-4">Set Time for Preparation</h2>
+            <h2 className="by-green-300 text-lg font-bold mb-4">Set Time for Preparation</h2>
             <div className="grid grid-cols-3 gap-4">
               {[10, 20, 30, 40, 50, 60, 70, 80, 90].map((time) => (
                 <button
