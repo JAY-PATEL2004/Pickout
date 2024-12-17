@@ -31,4 +31,11 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { login };
+const register = async (req, res) => {
+  const {name, email, phone_no, password, address, image_url} = req.body;
+  console.log(req.body);
+  const id = await User.insertCustomer(name, email, phone_no, password, address, image_url);
+  res.status(200).json(id);
+};
+
+module.exports = { login, register };

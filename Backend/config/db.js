@@ -1,6 +1,7 @@
 const { Client } = require('pg');
 
 const connectionString = 'postgresql://pickout_owner:L5hS0JvwkoEM@ep-spring-resonance-a5o9b60f.us-east-2.aws.neon.tech/pickout?sslmode=require';
+// const connectionString = 'postgresql://postgres:123@localhost:5432/Pickout';
 
 const client = new Client({
   connectionString: connectionString,
@@ -8,7 +9,10 @@ const client = new Client({
 
 client.connect()
   .then(() => console.log('Connected successfully'))
-  .catch((e) => console.error('Connection error', e));
+  .then(() => client.query('SELECT version();'))
+  .then(res => console.log(res.rows[0]))
+  .catch(e => console.error(e))
+  // .finally(() => client.end());
 
-// Do NOT call client.end() here, to keep the connection open for reuse.
 module.exports = client;
+// export default client;

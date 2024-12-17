@@ -23,7 +23,7 @@ const LoginPage = () => {
         localStorage.setItem("name", userData.name);
         localStorage.setItem("email", userData.email);
         localStorage.setItem("customer_id", userData.customer_id);
-        localStorage.setItem("phone_on", userData.phone_no);
+        localStorage.setItem("phone_no", userData.phone_no);
         localStorage.setItem("imageurl", userData.imageurl);
         localStorage.setItem("address", userData.address);
 
@@ -34,8 +34,8 @@ const LoginPage = () => {
       if (error.response) {
         switch (error.response.status) {
           case 400:
-            setErrorMessage("Email not found. Redirecting to signup...");
-            setTimeout(() => navigate("/SignupPage"), 2000); // Corrected navigation route
+            setErrorMessage("Email not found.");
+            // setTimeout(() => navigate("/SignupPage"), 2000); // Corrected navigation route
             break;
           case 401:
             setErrorMessage("Incorrect password. Please try again.");
