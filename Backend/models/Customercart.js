@@ -25,7 +25,7 @@ const deleteIteam = async(cust_id,rest_id,dish_id)=>{
 }
 const getcart = async (cust_id)=>{
     try{
-        await client.query(`
+      const result =await client.query(`
       SELECT d.name,d.image_url,d.description,r.name,r.location,c2.quantity,m.price
 FROM Cart c2
 JOIN Customer c ON c.id = c2.cust_id
@@ -36,6 +36,7 @@ JOIN Variant v ON v.var_id = c2.var_id AND v.dish_id = c2.dish_id AND v.rest_id 
 WHERE c2.cust_id = $1;
 
         `, [cust_id]);
+        return result.rows;
       }catch(err){
         console.log(err.message);
     

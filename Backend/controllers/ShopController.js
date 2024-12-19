@@ -29,12 +29,12 @@ const Shopmenu= async(req ,res)=>{
 
 }
 const categorydish= async(req ,res)=>{
-    const{rest_id}=req.body;
-    if(!rest_id){
+    const{rest_id,cat_id}=req.body;
+    if(!rest_id||!cat_id){
         return res. status(400).json({ message: "Missing required fields: rest_id" });
     }
     try{
-        const Dishes= await Shop.categorydish(rest_id);
+        const Dishes= await Shop.categorydish(cat_id,rest_id);
         return res.status(200).json(Dishes);
     }catch (error) {
         console.error("Error :", error);
