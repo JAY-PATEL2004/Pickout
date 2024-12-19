@@ -54,7 +54,7 @@ const LoginPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-4xl bg-white/80 backdrop-blur-md rounded-lg shadow-lg">
-        <div className="hidden md:flex md:w-1/2 h-full items-center justify-center bg-gray-200">
+        <div className="hidden md:flex md:w-1/2 h-full items-center justify-center bg-white-200">
           <img
             src={logoimage}
             alt="Phone Screen"
@@ -66,7 +66,7 @@ const LoginPage = () => {
             Welcome Back to Pickout!
           </h1>
           <p className="text-gray-600 text-center mb-6">
-            Sign in to continue exploring amazing opportunities.
+            Sign in to continue exploring Street food .
           </p>
           <form onSubmit={handleSubmit}>
             <input

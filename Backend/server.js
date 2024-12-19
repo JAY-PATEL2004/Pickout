@@ -10,7 +10,9 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use("/auth", require("./routes/authRoute"));
-
+app.use("/Cart", require("./routes/Cart"));
+app.use("/Shop",require("./routes/Shoproutes"));
+//app.use("/Order",require("./routes/OrderRoutes.js"));
 // Routes
 app.get('/', (req, res) => {
     
