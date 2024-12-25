@@ -13,6 +13,8 @@ app.use("/auth", require("./routes/authRoute"));
 app.use("/Cart", require("./routes/Cart"));
 app.use("/Shop",require("./routes/Shoproutes"));
 //app.use("/Order",require("./routes/OrderRoutes.js"));
+app.use("/VRegistration",require("./VendorRoutes/RegistrationRoutes"));
+app.use("/Vneworder",require("./VendorRoutes/VendorDashRoute"));
 // Routes
 app.get('/', (req, res) => {
     

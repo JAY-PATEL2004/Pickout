@@ -29,16 +29,6 @@ const insertCustomer = async (name, email, phone_no, password, address, image_ur
         console.log(err.message);
     }
 };
-// Insert a new vendor
-const insertVendor = async (userId, locationId, foodCategory) => {
-    try {
-        await client.query(`
-            INSERT INTO vendors (user_id, location_id, food_category)
-            VALUES ($1, $2, $3);
-        `, [userId, locationId, foodCategory]);
-    } catch (err) {
-        console.log(err.message);
-    }
-};
 
-module.exports = { selectCustomerWhere, selectAllCustomers, insertCustomer, insertVendor };
+
+module.exports = { selectCustomerWhere, selectAllCustomers, insertCustomer };

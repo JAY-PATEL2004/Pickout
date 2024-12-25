@@ -33,7 +33,18 @@ JOIN Restaurent r ON r.id = c2.rest_id
 	 Join menu m on m.rest_id= r.id 
 JOIN Dish d ON d.id =m.dish_id and d.id = c2.dish_id
 JOIN Variant v ON v.var_id = c2.var_id AND v.dish_id = c2.dish_id AND v.rest_id = c2.rest_id
-WHERE c2.cust_id = $1;
+WHERE c2.cust_id = $
+
+
+
+
+
+
+
+
+
+
+=1;
 
         `, [cust_id]);
         return result.rows;
